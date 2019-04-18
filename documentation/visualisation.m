@@ -25,4 +25,23 @@ for i=1:10
     end
 end
 axis([0 11 0 11]); 
+hold on
 
+%savetime is the bitcoin system, timelist is hackers'
+j=0;k=0;
+for i = sort([timelist savetime])
+    pause(i/100)
+    if find(savetime==i)
+        j=j+1;
+        subplot(1,2,1)
+        plot(j,10,'gs-','MarkerFaceColor','g','MarkerEdgeColor','g','MarkerSize',40)
+        hold on
+    else
+        k=k+1;
+        subplot(1,2,2)
+        plot(k,10,'rs-','MarkerFaceColor','r','MarkerEdgeColor','r','MarkerSize',40)
+        hold on
+    end
+end
+            
+    
