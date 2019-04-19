@@ -6,5 +6,5 @@ for i = 1:100
     timelist = [timelist time];
     Hashlist{i} = Hash;
 end
-save('data/timelist_bitcoinsys.mat','timelist')
-save('data/Hashlist_bitcoinsys.mat','Hashlist')
+save('../data/timelist_bitcoinsys.mat','timelist')
+save('../data/Hashlist_bitcoinsys.mat','Hashlist')

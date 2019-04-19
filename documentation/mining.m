@@ -12,7 +12,7 @@ function [Hash, time] = mining(Hash, num, iteration)
         if strcmp(Hashtemp(1:num), string)
             Hash = Hashtemp;
             time = toc;
-            break
+            return
         end
     end
     time = toc;
