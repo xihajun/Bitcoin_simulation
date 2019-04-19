@@ -26,17 +26,48 @@ for i=1:10
 end
 axis([0 11 0 11]); 
 hold on
-j=0;k=0;m=0;n=0;
+k=0;m=0;n=0;
+
+time = 0
+j=1;
+i=1;
+while i < length(savetime)
+    time = sum(savetime(1:i))
+    if find([11,21,31,41,51]==i)
+        pause(savetime(i)/10)
+        m = m+1
+        subplot(1,2,1)
+        plot(mod(i,10),10-m,'gs-','MarkerFaceColor','g','MarkerEdgeColor','g','MarkerSize',40)
+        title(['time= ',num2str(savetime(i))])
+    end
+    if time > sum(timelist(1:j))
+        pause(timelist(j)/10)
+        subplot(1,2,2)
+        plot(j,10-n,'rs-','MarkerFaceColor','r','MarkerEdgeColor','r','MarkerSize',40)
+        title(['time= ',num2str(timelist(j))])
+        j=j+1;
+        i = i-1;
+        hold on
+    else
+        pause(savetime(i)/10)
+        subplot(1,2,1)
+        plot(mod(i,10),10-m,'gs-','MarkerFaceColor','g','MarkerEdgeColor','g','MarkerSize',40)
+        title(['time= ',num2str(savetime(i))])
+    end
+    i=i+1;
+end
+            
 for i = sort([timelist savetime])
-    pause(i/100)
+    pause(i/10)
     if find(savetime==i)
         j=j+1;
         if j == 11
             j = 1;
             m = m+1
+        end
         subplot(1,2,1)
         plot(j,10-m,'gs-','MarkerFaceColor','g','MarkerEdgeColor','g','MarkerSize',40)
-        title(Hashlist(find(savetime==i)),'time = ',num2str(i))
+        title(['time = ',num2str(i)])
         hold on
     else
         
@@ -44,9 +75,10 @@ for i = sort([timelist savetime])
         if k == 11
             k = 1;
             n = n+1
+        end
         subplot(1,2,2)
         plot(k,10-n,'rs-','MarkerFaceColor','r','MarkerEdgeColor','r','MarkerSize',40)
-        title(HackerHash(find(timelist==i)), 'time= ',num2str(i))
+        title(['time= ',num2str(i)])
         hold on
     end
 end

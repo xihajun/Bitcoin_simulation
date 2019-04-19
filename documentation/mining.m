@@ -1,12 +1,19 @@
-function [Hash, time] = mining(Hash)
+function [Hash, time] = mining(Hash, num, iteration)
+    string = '';
+    for j =1:num
+        string = [string,'0'];
+    end
     tic
-    for i = 1:1000000
+    
+    for i = iteration
         data = [Hash,num2str(i)];
-        Hash = DataHash(data,'SHA-256');
-        if strcmp(Hash(1:4), '0000')
-            Hash;
+        Hashtemp = DataHash(data,'SHA-256');
+
+        if strcmp(Hashtemp(1:num), string)
+            Hash = Hashtemp;
             time = toc;
             break
         end
     end
+    time = toc;
 end
